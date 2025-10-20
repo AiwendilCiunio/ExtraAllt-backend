@@ -22,9 +22,11 @@ public class User {
     private long id;
     private String username;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Company> shares;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    // private List<Company> shares;
+    // not needed?
 
-    @OneToMany
-    private List<Holding> holdings;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    // private List<Holding> holdings;
+    // not needed?
 }
