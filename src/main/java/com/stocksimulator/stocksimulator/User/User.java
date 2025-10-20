@@ -1,8 +1,9 @@
-package com.stocksimulator.stocksimulator.User;
+package com.stocksimulator.stocksimulator.user;
 
 import java.util.List;
 
-import com.stocksimulator.stocksimulator.Company.Company;
+import com.stocksimulator.stocksimulator.company.Company;
+import com.stocksimulator.stocksimulator.holding.Holding;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,4 +24,7 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Company> shares;
+
+    @OneToMany
+    private List<Holding> holdings;
 }

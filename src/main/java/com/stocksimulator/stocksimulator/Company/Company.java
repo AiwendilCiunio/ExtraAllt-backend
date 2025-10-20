@@ -1,4 +1,4 @@
-package com.stocksimulator.stocksimulator.Company;
+package com.stocksimulator.stocksimulator.company;
 
 import java.math.BigDecimal;
 
@@ -17,7 +17,8 @@ public class Company {
     private long id;
     private String name;
     private String ticker;
+    private String description;
 
-    private BigDecimal currentPrice;
+
     
 }
