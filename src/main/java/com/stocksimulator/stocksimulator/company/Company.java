@@ -1,15 +1,11 @@
 package com.stocksimulator.stocksimulator.company;
 
-import java.util.List;
-
-import com.stocksimulator.stocksimulator.holding.Holding;
-import com.stocksimulator.stocksimulator.user.User;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Entity(name = "company")
@@ -22,6 +18,9 @@ public class Company {
     private String name;
     private String ticker;
     private String description;
+
+    private boolean isActive; // only active companies will be shown to user
+    private BigDecimal pricePerShare;
 
     // @OneToMany(mappedBy = "company")
     // private List<Holding> holdings;
