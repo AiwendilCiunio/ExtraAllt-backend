@@ -60,17 +60,19 @@ public class MarketStateSimulator {
     }
 
     public List<CompanyStateDTO> applyGlobalEvent(List<Company> companies) {
+        System.out.println("Global event");
         // apply global event
         BigDecimal change = randomPercentChange(0.2);
         companies.forEach(c -> c.setPricePerShare(
                 c.getPricePerShare().multiply(BigDecimal.ONE.add(change)).setScale(2, RoundingMode.HALF_UP)));
         // persist changes
-        // companyService.saveAll(companies);
+        companyService.saveAll(companies);
         return companies.stream().map(c -> new CompanyStateDTO(c.getName(), c.getPricePerShare(), change)).toList();
     }
 
     public List<CompanyStateDTO> applyLocalEvents(List<Company> companies) {
 
+        System.out.println("Local event");
         List<CompanyStateDTO> dtos = new ArrayList<>();
 
         for (Company c : companies) {
@@ -84,7 +86,7 @@ public class MarketStateSimulator {
         }
 
         // persist changes
-        // companyService.saveAll(companies);
+        companyService.saveAll(companies);
         return dtos;
     }
 
@@ -98,6 +100,7 @@ public class MarketStateSimulator {
             String direction = c.percentChange().signum() >= 0 ? "increased" : "decreased";
             String description = String.format("%s has %s by %s%%!", c.name(), direction, absolutePercentChange);
             dtos.add(new EventMessageDTO(c.name(), description, c.percentChange(), LocalDateTime.now()));
+            System.out.println(description);
         }
         return dtos;
     }

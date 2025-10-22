@@ -7,10 +7,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "company")
 @Data
+@NoArgsConstructor
 public class Company {
+
+    public Company(String name, String ticker, String description,
+            boolean isActive, BigDecimal pricePerShare) {
+        this.name = name;
+        this.ticker = ticker;
+        this.description = description;
+        this.isActive = isActive;
+        this.pricePerShare = pricePerShare;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
