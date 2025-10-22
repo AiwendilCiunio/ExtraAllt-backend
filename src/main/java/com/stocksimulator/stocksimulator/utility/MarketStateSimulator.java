@@ -38,7 +38,7 @@ public class MarketStateSimulator {
             throw new RuntimeException(e);
         }
 
-        // run simulation, generate events
+        // run simulation, generate messages
         List<CompanyStateDTO> changes = simulatePriceChanges();
         List<EventMessageDTO> events = generateEventMessages(changes);
 
@@ -51,8 +51,8 @@ public class MarketStateSimulator {
     public List<CompanyStateDTO> simulatePriceChanges() {
 
         List<Company> companies = companyService.findActiveCompanies();
-        // decide randomly if global/local event
-        if (Math.random() > 0.7) {
+        // decide if global/local event (40/60)
+        if (Math.random() > 0.4) {
             return applyGlobalEvent(companies);
         } else {
             return applyLocalEvents(companies);

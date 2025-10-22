@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Company {
 
+    // this constructor is needed for SeedData, removewhen SeedData no longer used
     public Company(String name, String ticker, String description,
             boolean isActive, BigDecimal pricePerShare) {
         this.name = name;
