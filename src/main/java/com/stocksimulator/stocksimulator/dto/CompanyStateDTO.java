@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record CompanyStateDTO(
-        String ticker,
+        String name,
         BigDecimal price,
-        BigDecimal change
+        BigDecimal percentChange
 // ,LocalDateTime lastUpdated
 ) {
 
