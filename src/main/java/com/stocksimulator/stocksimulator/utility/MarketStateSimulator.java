@@ -38,6 +38,9 @@ public class MarketStateSimulator {
             throw new RuntimeException(e);
         }
 
+        // TODO: (extra feature) periodically add new companies from DB
+        // (companyService.activateCompany())
+
         // run simulation, generate messages
         List<CompanyStateDTO> changes = simulatePriceChanges();
         List<EventMessageDTO> events = generateEventMessages(changes);

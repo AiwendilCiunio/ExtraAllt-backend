@@ -13,16 +13,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity(name = "holding")
+@Builder
 @Data
 public class Holding {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private BigDecimal quantity;
+    private int quantity;
     private BigDecimal averagePrice;
 
     private LocalDateTime lastUpdated;

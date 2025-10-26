@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.constraints.NotBlank;
+
 @Service
 public class CompanyService {
 
@@ -24,6 +26,11 @@ public class CompanyService {
     // save all companies (after price changes)
     public List<Company> saveAll(List<Company> companies) {
         return companyRepository.saveAll(companies);
+    }
+
+    // user to create holding
+    public Company getByName(String company) {
+        return companyRepository.findByName(company).orElseThrow(() -> new RuntimeException("company not found"));
     }
 
 }
