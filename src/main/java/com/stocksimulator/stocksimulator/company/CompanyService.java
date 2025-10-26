@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import jakarta.validation.constraints.NotBlank;
+import com.stocksimulator.stocksimulator.dto.CompanyDTO;
 
 @Service
 public class CompanyService {
@@ -18,9 +18,20 @@ public class CompanyService {
     // public Company activateCompany(Company company)
     // sets isActive to true
 
+    // used by frontend
     // gets all companies with isActive = true
-    public List<Company> findActiveCompanies() {
+    public List<CompanyDTO> findActiveCompanies() {
+        return CompanyDTO.fromEntities(companyRepository.findByIsActive(true));
+    }
+
+    // used by MarketStateSimulator
+    public List<Company> findActiveCompanyEntities() {
         return companyRepository.findByIsActive(true);
+    }
+
+    public CompanyDTO getById(long id) {
+        return companyRepository.findById(id).map(CompanyDTO::fromEntity)
+                .orElseThrow(() -> new RuntimeException("company not found"));
     }
 
     // save all companies (after price changes)
