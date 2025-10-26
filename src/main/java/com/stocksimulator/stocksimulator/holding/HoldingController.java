@@ -2,6 +2,8 @@ package com.stocksimulator.stocksimulator.holding;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,23 +33,29 @@ public class HoldingController {
     // MVP: skip login, return all holdings from DB
     // TODO: only get holdings for logged in user
     @GetMapping
-    public List<Holding> getAllHoldings() {
-        return holdingService.getAllHoldings();
+    public ResponseEntity<List<Holding>> getAllHoldings() {
+        List<Holding> holdings = holdingService.getAllHoldings();
+        if (holdings.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(holdings);
     }
 
     // MVP: no user info
     // TODO: user info
     @PostMapping
-    public Holding createHolding(@RequestBody @Valid HoldingCreateDTO dto) {
+    public ResponseEntity<Holding> createHolding(@RequestBody @Valid HoldingCreateDTO dto) {
         // TODO: get actual logged in user
         User user = userService.getDemoUser().orElseThrow(() -> new RuntimeException("demo user not found"));
-        return holdingService.createHolding(dto, user);
+        Holding holding = holdingService.createHolding(dto, user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(holding);
     }
 
     // MVP: no user info
     // TODO: user info
     @PatchMapping
-    public Holding updateHolding(@RequestBody @Valid HoldingUpdateDTO dto) {
-        return holdingService.updateHolding(dto);
+    public ResponseEntity<Holding> updateHolding(@RequestBody @Valid HoldingUpdateDTO dto) {
+        Holding holding = holdingService.updateHolding(dto);
+        return ResponseEntity.ok(holding);
     }
 }
