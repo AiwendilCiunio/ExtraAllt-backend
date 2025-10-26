@@ -33,6 +33,7 @@ public class SeedData {
         userRepository.findByUsername("demo").orElseGet(() -> {
             User user = new User();
             user.setUsername("demo");
+            user.setSaldo(BigDecimal.valueOf(100000));
             return userRepository.save(user);
         });
     }

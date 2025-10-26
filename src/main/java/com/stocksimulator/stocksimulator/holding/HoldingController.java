@@ -45,6 +45,8 @@ public class HoldingController {
     // TODO: user info
     @PostMapping
     public ResponseEntity<Holding> createHolding(@RequestBody @Valid HoldingCreateDTO dto) {
+
+        // TODO: check availableShares of Company, if available reduce qty
         // TODO: get actual logged in user
         User user = userService.getDemoUser().orElseThrow(() -> new RuntimeException("demo user not found"));
         Holding holding = holdingService.createHolding(dto, user);

@@ -1,5 +1,7 @@
 package com.stocksimulator.stocksimulator.user;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
+    private BigDecimal saldo;
     // TODO: password
     // TODO: email
 

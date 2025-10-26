@@ -33,6 +33,7 @@ public class Company {
 
     private boolean isActive; // only active companies will be shown to user
     private BigDecimal pricePerShare;
+    // TODO: private int availableShares;
 
     // @OneToMany(mappedBy = "company")
     // private List<Holding> holdings;
