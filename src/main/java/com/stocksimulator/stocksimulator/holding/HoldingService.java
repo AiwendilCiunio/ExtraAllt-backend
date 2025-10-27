@@ -29,7 +29,7 @@ public class HoldingService {
     }
 
     public Holding createHolding(HoldingCreateDTO dto, User user) {
-        Company company = companyService.getByName(dto.company());
+        Company company = companyService.getByName(dto.companyName());
 
         Holding holding = Holding.builder()
                 .user(user)

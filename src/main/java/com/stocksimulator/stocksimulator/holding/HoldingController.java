@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.stocksimulator.stocksimulator.user.UserService;
 import jakarta.validation.Valid;
 
 @RequestMapping("/api/holdings")
+@CrossOrigin(origins = "${app.cors.allowed-origins}")
 @RestController
 public class HoldingController {
 

@@ -70,7 +70,8 @@ public class MarketStateSimulator {
                 c.getPricePerShare().multiply(BigDecimal.ONE.add(change)).setScale(2, RoundingMode.HALF_UP)));
         // persist changes
         companyService.saveAll(companies);
-        return companies.stream().map(c -> new CompanyStateDTO(c.getName(), c.getPricePerShare(), change)).toList();
+        return companies.stream().map(c -> new CompanyStateDTO(c.getId(), c.getName(), c.getPricePerShare(), change))
+                .toList();
     }
 
     public List<CompanyStateDTO> applyLocalEvents(List<Company> companies) {
@@ -84,7 +85,7 @@ public class MarketStateSimulator {
                 c.setPricePerShare(
                         c.getPricePerShare().multiply(BigDecimal.ONE.add(change)).setScale(2, RoundingMode.HALF_UP));
 
-                dtos.add(new CompanyStateDTO(c.getName(), c.getPricePerShare(), change));
+                dtos.add(new CompanyStateDTO(c.getId(), c.getName(), c.getPricePerShare(), change));
             }
         }
 
