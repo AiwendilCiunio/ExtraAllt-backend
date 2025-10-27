@@ -5,12 +5,15 @@ import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.stocksimulator.stocksimulator.company.Company;
 import com.stocksimulator.stocksimulator.company.CompanyService;
 import com.stocksimulator.stocksimulator.dto.HoldingCreateDTO;
 import com.stocksimulator.stocksimulator.dto.HoldingUpdateDTO;
 import com.stocksimulator.stocksimulator.user.User;
 
+@Service
 public class HoldingService {
 
     private final HoldingRepository holdingRepository;

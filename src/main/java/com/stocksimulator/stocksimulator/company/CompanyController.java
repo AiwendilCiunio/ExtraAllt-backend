@@ -3,6 +3,7 @@ package com.stocksimulator.stocksimulator.company;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import com.stocksimulator.stocksimulator.dto.CompanyDTO;
 
 @RestController
 @RequestMapping("api/companies")
+@CrossOrigin(origins = "${app.cors.allowed-origins}")
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -20,6 +22,7 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    @GetMapping
     public List<CompanyDTO> getAllActiveCompanies() {
         return companyService.findActiveCompanies();
     }
