@@ -24,12 +24,12 @@ public class CompanyController {
 
     @GetMapping
     public List<CompanyDTO> getAllActiveCompanies() {
-        return companyService.findActiveCompanies();
+        return companyService.findActiveCompanies().stream().map(CompanyDTO::fromEntity).toList();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CompanyDTO> getCompanyById(@PathVariable long id) {
-        CompanyDTO company = companyService.getById(id);
-        return ResponseEntity.ok(company);
+        Company company = companyService.getById(id);
+        return ResponseEntity.ok(CompanyDTO.fromEntity(company));
     }
 }

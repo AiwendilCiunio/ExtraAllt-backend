@@ -48,7 +48,7 @@ public class MarketStateSimulator {
         // notify message broker about changes (updates prices, ?portfolio and pushes a
         // message about event) //("topic/market")
         template.convertAndSend("/topic/market/changes", changes);
-        template.convertAndSend("/topic/market/events", events);
+        template.convertAndSend("/topic/market/messages", events);
     }
 
     public List<CompanyStateDTO> simulatePriceChanges() {

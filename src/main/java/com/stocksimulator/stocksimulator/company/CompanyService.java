@@ -20,8 +20,8 @@ public class CompanyService {
 
     // used by frontend
     // gets all companies with isActive = true
-    public List<CompanyDTO> findActiveCompanies() {
-        return CompanyDTO.fromEntities(companyRepository.findByIsActive(true));
+    public List<Company> findActiveCompanies() {
+        return companyRepository.findByIsActive(true);
     }
 
     // used by MarketStateSimulator
@@ -29,8 +29,8 @@ public class CompanyService {
         return companyRepository.findByIsActive(true);
     }
 
-    public CompanyDTO getById(long id) {
-        return companyRepository.findById(id).map(CompanyDTO::fromEntity)
+    public Company getById(long id) {
+        return companyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("company not found"));
     }
 
