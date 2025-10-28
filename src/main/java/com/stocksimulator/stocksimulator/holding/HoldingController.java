@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stocksimulator.stocksimulator.dto.HoldingCreateDTO;
+import com.stocksimulator.stocksimulator.dto.HoldingDTO;
 import com.stocksimulator.stocksimulator.dto.HoldingUpdateDTO;
 import com.stocksimulator.stocksimulator.user.User;
 import com.stocksimulator.stocksimulator.user.UserService;
@@ -35,8 +36,8 @@ public class HoldingController {
     // MVP: skip login, return all holdings from DB
     // TODO: only get holdings for logged in user
     @GetMapping
-    public ResponseEntity<List<Holding>> getAllHoldings() {
-        List<Holding> holdings = holdingService.getAllHoldings();
+    public ResponseEntity<List<HoldingDTO>> getAllHoldings() {
+        List<HoldingDTO> holdings = holdingService.getAllHoldings().stream().map(HoldingDTO::fromEntity).toList();
         if (holdings.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -46,20 +47,20 @@ public class HoldingController {
     // MVP: no user info
     // TODO: user info
     @PostMapping
-    public ResponseEntity<Holding> createHolding(@RequestBody @Valid HoldingCreateDTO dto) {
+    public ResponseEntity<HoldingDTO> createHolding(@RequestBody @Valid HoldingCreateDTO dto) {
 
         // TODO: check availableShares of Company, if available reduce qty
         // TODO: get actual logged in user
         User user = userService.getDemoUser().orElseThrow(() -> new RuntimeException("demo user not found"));
         Holding holding = holdingService.createHolding(dto, user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(holding);
+        return ResponseEntity.status(HttpStatus.CREATED).body(HoldingDTO.fromEntity(holding));
     }
 
     // MVP: no user info
     // TODO: user info
     @PatchMapping
-    public ResponseEntity<Holding> updateHolding(@RequestBody @Valid HoldingUpdateDTO dto) {
+    public ResponseEntity<HoldingDTO> updateHolding(@RequestBody @Valid HoldingUpdateDTO dto) {
         Holding holding = holdingService.updateHolding(dto);
-        return ResponseEntity.ok(holding);
+        return ResponseEntity.ok(HoldingDTO.fromEntity(holding));
     }
 }
