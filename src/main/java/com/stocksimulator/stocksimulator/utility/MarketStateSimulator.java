@@ -53,7 +53,7 @@ public class MarketStateSimulator {
 
     public List<CompanyStateDTO> simulatePriceChanges() {
 
-        List<Company> companies = companyService.findActiveCompanyEntities();
+        List<Company> companies = companyService.findActiveCompanies();
         // decide if global/local event (40/60)
         if (Math.random() > 0.4) {
             return applyGlobalEvent(companies);

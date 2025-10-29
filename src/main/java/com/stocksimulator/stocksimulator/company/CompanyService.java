@@ -15,17 +15,14 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
+    // TODO: new company pops up on screen
     // public Company activateCompany(Company company)
     // sets isActive to true
 
     // used by frontend
     // gets all companies with isActive = true
-    public List<Company> findActiveCompanies() {
-        return companyRepository.findByIsActive(true);
-    }
-
     // used by MarketStateSimulator
-    public List<Company> findActiveCompanyEntities() {
+    public List<Company> findActiveCompanies() {
         return companyRepository.findByIsActive(true);
     }
 
