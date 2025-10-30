@@ -34,6 +34,7 @@ class StocksimulatorApplicationTests {
 	void contextLoads() {
 	}
 
+	// doesn't work for some reason
 	// @Test
 	// void generateEventMessages_shouldFormatMessagesCorrectly() {
 	// MarketStateSimulator simulator = new MarketStateSimulator(null, null);
@@ -54,6 +55,7 @@ class StocksimulatorApplicationTests {
 	// 10.00%"));
 	// }
 
+	// HoldingService - correct conversion to dto
 	@Test
 	void createHolding_shouldBuildHoldingWithCorrectValues() {
 		HoldingRepository repo = mock(HoldingRepository.class);
@@ -77,6 +79,7 @@ class StocksimulatorApplicationTests {
 		verify(repo).save(result);
 	}
 
+	// HoldingService - updateHolding (Average Price)
 	@Test
 	void updateHolding_shouldComputeWeightedAverageAndUpdateQuantity() {
 		HoldingRepository repo = mock(HoldingRepository.class);
@@ -102,6 +105,7 @@ class StocksimulatorApplicationTests {
 		verify(repo).save(existing);
 	}
 
+	// HoldingService - updateHolding (Last Updated)
 	@Test
 	void updateHolding_shouldSetLastUpdatedToNow() {
 		HoldingRepository repo = mock(HoldingRepository.class);
@@ -128,6 +132,7 @@ class StocksimulatorApplicationTests {
 		assertFalse(result.getLastUpdated().isAfter(after));
 	}
 
+	// CompanyService
 	@Test
 	void findActiveCompanies_shouldReturnActiveCompaniesFromRepo() {
 		CompanyRepository repo = mock(CompanyRepository.class);
@@ -146,6 +151,7 @@ class StocksimulatorApplicationTests {
 		assertFalse(result.containsAll(inactive));
 	}
 
+	// CompanyService
 	@Test
 	void getByName_shouldReturnWhenFound() {
 		CompanyRepository repo = mock(CompanyRepository.class);
@@ -159,5 +165,4 @@ class StocksimulatorApplicationTests {
 		assertEquals(company, result);
 		verify(repo).findByName("Gamma");
 	}
-
 }
