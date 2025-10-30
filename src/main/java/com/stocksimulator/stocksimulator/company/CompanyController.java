@@ -13,7 +13,7 @@ import com.stocksimulator.stocksimulator.dto.CompanyDTO;
 
 @RestController
 @RequestMapping("api/companies")
-@CrossOrigin(origins = "${app.cors.allowed-origins}")
+// @CrossOrigin(origins = "${app.cors.allowed-origins}")
 public class CompanyController {
 
     private final CompanyService companyService;

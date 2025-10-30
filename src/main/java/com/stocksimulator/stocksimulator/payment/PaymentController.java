@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "${app.cors.allowed-origins}")
+// @CrossOrigin(origins = "${app.cors.allowed-origins}")
 @RequestMapping("/api/payments")
 public class PaymentController {
 

@@ -21,7 +21,7 @@ import com.stocksimulator.stocksimulator.user.UserService;
 import jakarta.validation.Valid;
 
 @RequestMapping("/api/holdings")
-@CrossOrigin(origins = "${app.cors.allowed-origins}")
+// @CrossOrigin(origins = "${app.cors.allowed-origins}")
 @RestController
 public class HoldingController {
 
