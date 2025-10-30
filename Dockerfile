@@ -1,15 +1,14 @@
-# ---- Build phase ----
-FROM eclipse-temurin:21-jdk AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-
-# build the jar
-RUN mvn -f pom.xml clean package -DskipTests
-
-# ---- Runtime phase ----
-FROM eclipse-temurin:21-jdk
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+FROM eclipse-temurin:17-jdk-jammy AS builder
+WORKDIR /opt/app
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+COPY mvnw .
+RUN chmod +x ./mvnw
+RUN ./mvnw dependency:go-offline
+COPY ./src ./src
+RUN ./mvnw clean install -DskipTests
+FROM eclipse-temurin:17-jre-jammy
+WORKDIR /opt/app
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
+ENTRYPOINT ["java","-Dspring.profiles.active=prod", "-jar", "/opt/app/*.jar" ]
