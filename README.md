@@ -1,4 +1,4 @@
-## Stocksimulator – Backend
+# Stocksimulator – Backend
 
 Det här är backend‑delen av **Stocksimulator**, en applikation som simulerar aktiemarknaden i realtid.  
 Backend tillhandahåller REST API, Stripe‑betalningsflöde och WebSocket‑uppdateringar för frontend‑klienten.
